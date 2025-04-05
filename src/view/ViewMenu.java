@@ -49,24 +49,32 @@ public class ViewMenu {
 		Button addBtn = new Button("Add Item");
 		Button editBtn = new Button("Edit Item");
 		Button delBtn = new Button("Delete Item");
+		Button refreshBtn = new Button("Refresh View");
 		
 		TableView<Item> itemtable = new TableView<>();
-		TableColumn<Item, String> nameCol = new TableColumn<Item, String>("Nama");
+		TableColumn<Item, String> nameCol = new TableColumn<Item, String>("Name");
 		TableColumn<Item, String> idCol = new TableColumn<Item, String>("id");
 		TableColumn<Item, Integer> priceCol = new TableColumn<Item, Integer>("Price");
 		TableColumn<Item, Integer> stockCol = new TableColumn<Item, Integer>("Stock");
 		
-		nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+		nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
 //		nameCol.setPrefWidth(100);
-		idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+		idCol.setCellValueFactory(new PropertyValueFactory<>("Id"));
 //		idCol.setPrefWidth(8);
-		priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+		priceCol.setCellValueFactory(new PropertyValueFactory<>("Price"));
 //		priceCol.setPrefWidth(10);
-		stockCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+		stockCol.setCellValueFactory(new PropertyValueFactory<>("Stock"));
 //		stockCol.setPrefWidth(10);
 		itemtable.getColumns().addAll(nameCol, idCol, priceCol, stockCol);
 		
 		ArrayList<Item> itemlist = getItems();
+		for(int i=0 ; i<itemlist.size() ; i++) {
+			System.out.println(itemlist.get(i).getName());
+			System.out.println(itemlist.get(i).getId());
+			System.out.println(itemlist.get(i).getPrice());
+			System.out.println(itemlist.get(i).getStock());
+		}
+		
 		itemtable.setItems(FXCollections.observableArrayList(itemlist));
 		
 		headLb.setStyle("-fx-font-size: 33; -fx-font-family: 'Times New Roman';");
@@ -77,6 +85,7 @@ public class ViewMenu {
 		root.add(editBtn, 0, 2);
 		root.add(delBtn, 0, 3);
 		root.add(sp, 1, 1, 1, 4);
+		root.add(refreshBtn, 0, 4);
 		
 		root.setAlignment(Pos.CENTER);
 		root.setVgap(10);
@@ -106,8 +115,8 @@ public class ViewMenu {
 				} else {
 					System.out.println("no item selected");
 				}
-				ArrayList<Item> itemlist = getItems();
-				itemtable.setItems(FXCollections.observableArrayList(itemlist));
+//				ArrayList<Item> itemlist = getItems();
+//				itemtable.setItems(FXCollections.observableArrayList(itemlist));
 			}
 			
 		});
@@ -124,12 +133,25 @@ public class ViewMenu {
 				} else {
 					System.out.println("no item selected");
 				}
-				ArrayList<Item> itemlist = getItems();
-				itemtable.setItems(FXCollections.observableArrayList(itemlist));
+//				ArrayList<Item> itemlist = getItems();
+//				itemtable.setItems(FXCollections.observableArrayList(itemlist));
 			}
 		});
+		refreshBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				ArrayList<Item>itemlist = getItems();
+				itemtable.setItems(FXCollections.observableArrayList(itemlist));
+			}
+			
+		});
+		
 		stage.setScene(scene);
 	}
+	
+	
 	
 	
 	//GANTI JADI ARRAYLIST COBA

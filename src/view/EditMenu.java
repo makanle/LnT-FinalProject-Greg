@@ -75,7 +75,7 @@ public class EditMenu {
 				String id = selected.getId();
 				int price = Integer.parseInt(priceTa.getText());
 				int stock = Integer.parseInt(stockTa.getText());
-				String query = "UPDATE item SET price = ?, stock = ? WHERE name = ?, id = ?";
+				String query = "UPDATE item SET price = ?, stock = ? WHERE name = ? AND id = ?";
 				
 				try(Connection con = Database.getConnection();
 						PreparedStatement ps = con.prepareStatement(query)) {
