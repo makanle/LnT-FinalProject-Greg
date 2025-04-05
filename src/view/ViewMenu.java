@@ -68,12 +68,12 @@ public class ViewMenu {
 		itemtable.getColumns().addAll(nameCol, idCol, priceCol, stockCol);
 		
 		ArrayList<Item> itemlist = getItems();
-		for(int i=0 ; i<itemlist.size() ; i++) {
-			System.out.println(itemlist.get(i).getName());
-			System.out.println(itemlist.get(i).getId());
-			System.out.println(itemlist.get(i).getPrice());
-			System.out.println(itemlist.get(i).getStock());
-		}
+		// for(int i=0 ; i<itemlist.size() ; i++) {
+		// 	System.out.println(itemlist.get(i).getName());
+		// 	System.out.println(itemlist.get(i).getId());
+		// 	System.out.println(itemlist.get(i).getPrice());
+		// 	System.out.println(itemlist.get(i).getStock());
+		// }
 		
 		itemtable.setItems(FXCollections.observableArrayList(itemlist));
 		
