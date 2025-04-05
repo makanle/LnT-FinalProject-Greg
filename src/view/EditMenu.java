@@ -1,5 +1,6 @@
 package view;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -76,8 +77,8 @@ public class EditMenu {
 				int stock = Integer.parseInt(stockTa.getText());
 				String query = "UPDATE item SET price = ?, stock = ? WHERE name = ?, id = ?";
 				
-				try {
-					PreparedStatement ps = db.ps(query);
+				try(Connection con = Database.getConnection();
+						PreparedStatement ps = con.prepareStatement(query)) {
 					ps.setInt(1, price);
 					ps.setInt(2, stock);
 					ps.setString(3, name);

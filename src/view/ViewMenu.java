@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -65,8 +66,8 @@ public class ViewMenu {
 //		stockCol.setPrefWidth(10);
 		itemtable.getColumns().addAll(nameCol, idCol, priceCol, stockCol);
 		
-		ObservableList<Item> itemlist = getItems();
-		itemtable.setItems(itemlist);
+		ArrayList<Item> itemlist = getItems();
+		itemtable.setItems(FXCollections.observableArrayList(itemlist));
 		
 		headLb.setStyle("-fx-font-size: 33; -fx-font-family: 'Times New Roman';");
 		itemtable.setPrefHeight(500);
@@ -88,8 +89,8 @@ public class ViewMenu {
 				// TODO Auto-generated method stub
 				Stage newstage = new Stage();
 				new AddMenu(newstage);
-				ObservableList<Item> itemlist = getItems();
-				itemtable.setItems(itemlist);
+				ArrayList<Item> itemlist = getItems();
+				itemtable.setItems(FXCollections.observableArrayList(itemlist));
 			}
 		});
 		
@@ -105,8 +106,8 @@ public class ViewMenu {
 				} else {
 					System.out.println("no item selected");
 				}
-				ObservableList<Item> itemlist = getItems();
-				itemtable.setItems(itemlist);
+				ArrayList<Item> itemlist = getItems();
+				itemtable.setItems(FXCollections.observableArrayList(itemlist));
 			}
 			
 		});
@@ -123,8 +124,8 @@ public class ViewMenu {
 				} else {
 					System.out.println("no item selected");
 				}
-				ObservableList<Item> itemlist = getItems();
-				itemtable.setItems(itemlist);
+				ArrayList<Item> itemlist = getItems();
+				itemtable.setItems(FXCollections.observableArrayList(itemlist));
 			}
 		});
 		stage.setScene(scene);
@@ -133,8 +134,8 @@ public class ViewMenu {
 	
 	//GANTI JADI ARRAYLIST COBA
 	
-	public static ObservableList<Item> getItems(){
-		ObservableList<Item> itemlist = FXCollections.observableArrayList();
+	public static ArrayList<Item> getItems(){
+		ArrayList<Item> itemlist = new ArrayList<>();
 		
 		String query = "SELECT * FROM item";
 		
